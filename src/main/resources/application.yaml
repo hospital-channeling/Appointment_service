@@ -1,0 +1,32 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql:
+      true
+
+  datasource:
+    url: jdbc:mysql://hospital-channeling.mysql.database.azure.com:3306/hospital_management_system?useSSL=true&serverTimezone=UTC&failOverReadOnly=false&createDatabaseIfNotExist=true
+    username:
+      hostpitaldea123
+    password:
+      Dea@assignment
+    driver-class-name:
+      com.mysql.cj.jdbc.Driver
+
+
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql:
+#      true
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/hospitalmanagement?createDatabaseIfNotExist=true
+#    username:
+#      root
+#    password:
+#      4dhr@TY8
+#    driver-class-name:
+#      com.mysql.cj.jdbc.Driver
