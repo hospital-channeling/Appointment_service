@@ -6,11 +6,11 @@ spring:
       true
 
   datasource:
-    url: jdbc:mysql://hospital-channeling.mysql.database.azure.com:3306/hospital_management_system?useSSL=true&serverTimezone=UTC&failOverReadOnly=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://hostpitalchanneling.mysql.database.azure.com:3306/hospital_management_system?useSSL=true&serverTimezone=UTC&failOverReadOnly=false&createDatabaseIfNotExist=true
     username:
-      hostpitaldea123
+      HCSadmin
     password:
-      Dea@assignment
+      vykguf-5roTmu-wanvim
     driver-class-name:
       com.mysql.cj.jdbc.Driver
 
