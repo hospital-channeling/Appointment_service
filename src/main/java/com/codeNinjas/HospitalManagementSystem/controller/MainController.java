@@ -1,12 +1,13 @@
 package com.codeNinjas.HospitalManagementSystem.controller;
 
-import com.codeNinjas.HospitalManagementSystem.dto.UserDTO;
-import com.codeNinjas.HospitalManagementSystem.entity.User;
+import com.codeNinjas.HospitalManagementSystem.dto.PatientDTO;
+import com.codeNinjas.HospitalManagementSystem.entity.Patient;
 import com.codeNinjas.HospitalManagementSystem.exception.UserNotFoundException;
-import com.codeNinjas.HospitalManagementSystem.repository.UserRepository;
-import com.codeNinjas.HospitalManagementSystem.service.UserService;
+import com.codeNinjas.HospitalManagementSystem.repository.PatientRepository;
+import com.codeNinjas.HospitalManagementSystem.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -16,19 +17,22 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private UserService userService;
+    private PatientService patientService;
 
     @Autowired
-    private UserRepository userRepository;
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @PostMapping("/saveUser")
-    public UserDTO saveUser(@RequestBody UserDTO userDTO){
-        return userService.savePatient(userDTO);
+    public PatientDTO saveUser(@RequestBody PatientDTO patientDTO){
+        return patientService.savePatient(patientDTO);
     }
 
     @GetMapping("/getUser")
-    public List<UserDTO> getUser(){
-        return userService.getUserData();
+    public List<PatientDTO> getUser(){
+        return patientService.getUserData();
     }
 //
 //    @PutMapping("/updateUser")
@@ -42,33 +46,33 @@ public class MainController {
 //    }
 
     @GetMapping("/getUserByID/{userID}")
-    public User getUserByID(@PathVariable int userID){
-        return userRepository.findById(userID).orElseThrow(()->new UserNotFoundException(userID));
+    public Patient getUserByID(@PathVariable int userID){
+//        return modelMapper.map(userService.getUserByID(userID), User.class);
+        return patientService.getUserByID(userID);
     }
 
     @PutMapping("/updateUserByID/{userID}")
-    public User updateUserByID(@RequestBody User newUser, @PathVariable int userID){
-        return userRepository.findById(userID)
+    public Patient updateUserByID(@RequestBody Patient newPatient, @PathVariable int userID){
+        return patientRepository.findById(userID)
                 .map(user -> {
-                    user.setFirst_name(newUser.getFirst_name());
-                    user.setLast_name(newUser.getLast_name());
-                    user.setAddress(newUser.getAddress());
-                    user.setBirthdate(newUser.getBirthdate());
-                    user.setGender(newUser.getGender());
-                    user.setEmail(newUser.getEmail());
-                    user.setContact(newUser.getContact());
-                    user.setPassword(newUser.getPassword());
-                    return userRepository.save(user);
+                    user.setFirst_name(newPatient.getFirst_name());
+                    user.setLast_name(newPatient.getLast_name());
+                    user.setAddress(newPatient.getAddress());
+                    user.setBirthdate(newPatient.getBirthdate());
+                    user.setGender(newPatient.getGender());
+                    user.setEmail(newPatient.getEmail());
+                    user.setContact(newPatient.getContact());
+                    user.setPassword(newPatient.getPassword());
+                    return patientService.updatePatient(user);
                 }).orElseThrow(()->new UserNotFoundException(userID));
     }
 
     @DeleteMapping("/deleteUserByID/{userID}")
     public String deleteUserByID(@PathVariable int userID){
-        if(!userRepository.existsById(userID)){
+        if(!patientRepository.existsById(userID)){
             throw new UserNotFoundException(userID);
         }
-
-        userRepository.deleteById(userID);
+        patientRepository.deleteById(userID);
         return "User with ID "+userID+ " has been deleted";
     }
 
