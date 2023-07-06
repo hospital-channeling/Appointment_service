@@ -2,7 +2,6 @@ package com.codeNinjas.HospitalManagementSystem.controller;
 
 import com.codeNinjas.HospitalManagementSystem.entity.Receptionist;
 import com.codeNinjas.HospitalManagementSystem.exception.ReceptionistNotFoundException;
-import com.codeNinjas.HospitalManagementSystem.exception.UserNotFoundException;
 import com.codeNinjas.HospitalManagementSystem.repository.ReceptionistRepository;
 import com.codeNinjas.HospitalManagementSystem.service.ReceptionistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-@RequestMapping(value = "/api/user")
+@RequestMapping(value = "/api/receptionist")
 public class ReceptionistController {
 
     @Autowired

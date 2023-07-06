@@ -5,6 +5,7 @@ import com.codeNinjas.HospitalManagementSystem.entity.Patient;
 import com.codeNinjas.HospitalManagementSystem.exception.UserNotFoundException;
 import com.codeNinjas.HospitalManagementSystem.repository.PatientRepository;
 import jakarta.transaction.Transactional;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,5 @@ public class PatientService {
 //        return modelMapper.map(user, UserDTO.class);
         return patientRepository.findById(userID).orElseThrow(()->new UserNotFoundException(userID));
     }
+
 }
